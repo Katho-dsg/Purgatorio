@@ -1,0 +1,277 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #0a0607;
+  --color-ink-2: #140b0d;
+  --color-stone: #2a2124;
+  --color-blood: #c1121f;
+  --color-blood-deep: #5e0812;
+  --color-bone: #f3ede6;
+  --color-bone-dim: #c9bcb4;
+  --color-uv: #5a46ff;
+  --color-neon: #ff2b3f;
+
+  --font-gothic: "Grenze Gotisch", "Grenze", serif;
+  --font-serif: "Grenze", Georgia, serif;
+  --font-cond: "Saira Extra Condensed", "Arial Narrow", sans-serif;
+  --font-script: "Mrs Saint Delafield", cursive;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root {
+  color-scheme: dark;
+  --glow-red: 0 0 2px #fff4, 0 0 10px #ff2b3fcc, 0 0 26px #c1121faa, 0 0 60px #c1121f66;
+  --glow-uv: 0 0 2px #fff4, 0 0 10px #7c6cffcc, 0 0 26px #5a46ffaa, 0 0 60px #5a46ff66;
+}
+
+html {
+  background: var(--color-ink);
+  scroll-behavior: smooth;
+  scrollbar-color: var(--color-blood-deep) var(--color-ink);
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background: var(--color-ink);
+  color: var(--color-bone);
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-blood);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-neon);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-ink);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-blood-deep);
+  border: 2px solid var(--color-ink);
+  border-radius: 6px;
+}
+
+/* ---------- Neón ---------- */
+.neon {
+  color: #fff3f1;
+  text-shadow: var(--glow-red);
+}
+.neon-uv {
+  color: #f1efff;
+  text-shadow: var(--glow-uv);
+}
+
+/* El título se enciende una vez, como un tubo de neón al conectarse. */
+@keyframes ignite {
+  0% { opacity: 0.08; text-shadow: none; }
+  8% { opacity: 1; text-shadow: var(--glow-red); }
+  11% { opacity: 0.2; text-shadow: none; }
+  18% { opacity: 1; text-shadow: var(--glow-red); }
+  21% { opacity: 0.35; text-shadow: none; }
+  34%, 100% { opacity: 1; text-shadow: var(--glow-red); }
+}
+@keyframes hum {
+  0%, 92%, 100% { opacity: 1; }
+  93% { opacity: 0.55; }
+  94% { opacity: 1; }
+  96% { opacity: 0.75; }
+}
+.ignite {
+  animation: ignite 1.8s steps(1, end) 0.3s both, hum 7s linear 2.4s infinite;
+}
+
+/* ---------- Placa ornamental (botones) ---------- */
+.plaque {
+  --plaque-glow: #ff2b3f;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 3.5rem;
+  padding: 0 2.25rem;
+  font-family: var(--font-gothic);
+  font-weight: 600;
+  font-size: 1.45rem;
+  line-height: 1;
+  color: #fff3f1;
+  text-shadow: 0 0 10px color-mix(in srgb, var(--plaque-glow) 80%, transparent);
+  background:
+    radial-gradient(120% 140% at 50% 0%, #3a2a2d 0%, #160c0e 60%, #0c0607 100%);
+  clip-path: polygon(14px 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 14px 100%, 0 50%);
+  box-shadow:
+    inset 0 0 0 1px #ffffff1f,
+    inset 0 0 0 4px #0a0607,
+    inset 0 0 0 5px color-mix(in srgb, var(--plaque-glow) 55%, transparent),
+    inset 0 0 22px color-mix(in srgb, var(--plaque-glow) 25%, transparent);
+  transition:
+    transform 160ms var(--ease-out-expo),
+    box-shadow 260ms ease,
+    text-shadow 260ms ease;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+}
+.plaque-wrap {
+  display: inline-flex;
+  filter: drop-shadow(0 6px 14px #000c) drop-shadow(0 0 0 transparent);
+  transition: filter 260ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .plaque-wrap:hover {
+    filter: drop-shadow(0 6px 14px #000c) drop-shadow(0 0 16px color-mix(in srgb, var(--plaque-glow, #ff2b3f) 70%, transparent));
+  }
+  .plaque:hover {
+    text-shadow: 0 0 4px #fff8, 0 0 16px var(--plaque-glow);
+    box-shadow:
+      inset 0 0 0 1px #ffffff2a,
+      inset 0 0 0 4px #0a0607,
+      inset 0 0 0 5px var(--plaque-glow),
+      inset 0 0 30px color-mix(in srgb, var(--plaque-glow) 45%, transparent);
+  }
+}
+.plaque:active {
+  transform: scale(0.97);
+}
+.plaque-sm {
+  min-height: 2.75rem;
+  padding: 0 1.5rem;
+  font-size: 1.15rem;
+}
+
+/* ---------- Título de sección con ornamentos ---------- */
+.ornate-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+  text-align: center;
+}
+.ornate-title::before,
+.ornate-title::after {
+  content: "";
+  flex: 0 1 7rem;
+  height: 9px;
+  background:
+    linear-gradient(currentColor, currentColor) center / 100% 1px no-repeat,
+    linear-gradient(45deg, transparent 40%, currentColor 40% 60%, transparent 60%) right center / 9px 9px no-repeat;
+  opacity: 0.7;
+}
+.ornate-title::after {
+  transform: scaleX(-1);
+}
+@media (max-width: 639px) {
+  .ornate-title::before,
+  .ornate-title::after {
+    display: none;
+  }
+}
+
+/* ---------- Revelado al hacer scroll ---------- */
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(28px);
+    filter: blur(6px);
+    transition:
+      opacity 900ms var(--ease-out-expo),
+      transform 900ms var(--ease-out-expo),
+      filter 900ms var(--ease-out-expo);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  [data-reveal][data-shown] {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+/* ---------- Atmósfera ---------- */
+@keyframes torch {
+  0%, 100% { opacity: 0.85; transform: scale(1); }
+  20% { opacity: 1; transform: scale(1.06); }
+  40% { opacity: 0.7; transform: scale(0.97); }
+  60% { opacity: 0.95; transform: scale(1.03); }
+  80% { opacity: 0.78; transform: scale(0.99); }
+}
+@keyframes drift {
+  from { transform: translate3d(-6%, 0, 0); }
+  to { transform: translate3d(6%, 0, 0); }
+}
+@keyframes float {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(var(--rot, 0deg)); }
+  50% { transform: translate3d(0, -14px, 0) rotate(calc(var(--rot, 0deg) + 2deg)); }
+}
+@keyframes marquee {
+  to { transform: translate3d(-50%, 0, 0); }
+}
+
+.torch {
+  animation: torch 2.4s ease-in-out infinite;
+}
+.fog {
+  animation: drift 26s ease-in-out infinite alternate;
+}
+.float {
+  animation: float 7s ease-in-out infinite;
+}
+.marquee {
+  animation: marquee 60s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .torch,
+  .fog,
+  .float,
+  .marquee,
+  .ignite {
+    animation: none !important;
+  }
+  .ignite {
+    text-shadow: var(--glow-red);
+  }
+}
+
+/* Puntos guía entre nombre y precio en la carta. */
+.leader {
+  flex: 1;
+  min-width: 1.5rem;
+  border-bottom: 1px dotted #c9bcb455;
+  transform: translateY(-0.35em);
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes fade {
+  from { opacity: 0; filter: blur(4px); transform: scale(0.98); }
+  to { opacity: 1; filter: none; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  [class*="animate-[fade"] {
+    animation: none !important;
+  }
+}
