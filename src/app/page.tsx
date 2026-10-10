@@ -1,6 +1,6 @@
 import { Nav } from "@/components/Nav";
 import { Hero } from "@/components/Hero";
-import { StoneBand } from "@/components/StoneBand";
+import { Band } from "@/components/Band";
 import { Story } from "@/components/Story";
 import { Gallery } from "@/components/Gallery";
 import { Sins } from "@/components/Sins";
@@ -16,7 +16,9 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
-        <StoneBand />
+        <Band left="Gótico" right="Cultura">
+          Café, cócteles y arte en una sección del Castillo del Mono Osorio, en Bogotá. Un espacio para todo público.
+        </Band>
         <Story />
         <Gallery />
         <Sins />

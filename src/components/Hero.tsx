@@ -1,121 +1,101 @@
-"use client";
-
+import { ArrowDownRight } from "@phosphor-icons/react/dist/ssr";
 import { asset } from "@/lib";
+import { site } from "@/data/site";
+import { Star } from "./Star";
 
-import { useEffect, useRef } from "react";
-import { Plaque } from "./Plaque";
-import { Embers } from "./Embers";
+const word = "Purgatorio".split("");
 
+// Afiche de entrada: papel, el nombre en serif alta y la mujer velada impresa en tramado.
 export function Hero() {
-  const root = useRef<HTMLElement>(null);
-
-  // Profundidad sutil siguiendo el cursor: se escriben variables CSS directamente, sin re-render.
-  useEffect(() => {
-    const el = root.current;
-    if (!el) return;
-    if (!matchMedia("(pointer: fine)").matches || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    let raf = 0;
-    let tx = 0, ty = 0, x = 0, y = 0;
-    const onMove = (e: PointerEvent) => {
-      tx = e.clientX / window.innerWidth - 0.5;
-      ty = e.clientY / window.innerHeight - 0.5;
-      if (!raf) raf = requestAnimationFrame(tick);
-    };
-    const tick = () => {
-      x += (tx - x) * 0.08;
-      y += (ty - y) * 0.08;
-      el.style.setProperty("--px", x.toFixed(4));
-      el.style.setProperty("--py", y.toFixed(4));
-      raf = Math.abs(tx - x) + Math.abs(ty - y) > 0.0005 ? requestAnimationFrame(tick) : 0;
-    };
-    el.addEventListener("pointermove", onMove);
-    return () => {
-      el.removeEventListener("pointermove", onMove);
-      cancelAnimationFrame(raf);
-    };
-  }, []);
-
   return (
-    <section
-      ref={root}
-      id="inicio"
-      className="relative isolate flex min-h-[100svh] items-center justify-center overflow-hidden [--px:0] [--py:0]"
-    >
-      {/* Escena: caja con la proporción de la imagen para que las antorchas caigan en su sitio. */}
-      <div
-        aria-hidden
-        className="absolute left-1/2 top-1/2 -z-10 h-[max(100%,56.25vw)] w-[max(100%,177.78svh)]"
-        style={{ transform: "translate(calc(-50% + var(--px) * -18px), calc(-50% + var(--py) * -12px)) scale(1.04)" }}
-      >
-        <img
-          src={asset("/img/gen/hero.webp")}
-          alt=""
-          fetchPriority="high"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        <span className="torch absolute left-[15.7%] top-[45%] h-[34%] w-[16%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,#ff3b2fa0,#c1121f40_45%,transparent)] mix-blend-screen" />
-        <span
-          className="torch absolute left-[84%] top-[44.5%] h-[34%] w-[16%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,#ff3b2fa0,#c1121f40_45%,transparent)] mix-blend-screen"
-          style={{ animationDelay: "-1.1s" }}
-        />
-        <span className="torch absolute left-1/2 top-[62%] h-[40%] w-[22%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,#5a46ff55,transparent)] mix-blend-screen [animation-duration:5s]" />
-      </div>
+    <section id="inicio" className="paper relative isolate flex min-h-[100svh] flex-col overflow-hidden pt-[56px]">
+      <div className="relative mx-auto w-full max-w-[1400px] px-4 sm:px-8">
+        <div className="relative flex items-start justify-between pt-5 sm:pt-7">
+          <Star size={22} className="mt-1" />
+          <p className="label text-center text-[clamp(0.95rem,1.25vw,1.2rem)] leading-tight tracking-[0.04em]">
+            Lo que ella no dice
+            <br />
+            lo guardan las piedras del castillo
+          </p>
+          <Star size={22} className="mt-1" />
+        </div>
 
-      {/* Viñeta, niebla y fundido hacia la página. */}
-      <div aria-hidden className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,transparent_30%,#0a0607cc_85%)]" />
-      <div aria-hidden className="pointer-events-none absolute inset-x-[-10%] top-[-6%] -z-10 h-[30%]">
-        <div className="fog h-full w-full bg-[radial-gradient(ellipse_at_30%_40%,#5e081255,transparent_60%),radial-gradient(ellipse_at_75%_30%,#2a212488,transparent_60%)] blur-2xl" />
-      </div>
-      <div aria-hidden className="pointer-events-none absolute inset-x-[-10%] bottom-[8%] -z-10 h-[26%]">
-        <div className="fog h-full w-full bg-[radial-gradient(ellipse_at_50%_60%,#c9bcb41f,transparent_65%)] blur-2xl [animation-duration:34s]" />
-      </div>
-      <div aria-hidden className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-b from-transparent to-ink" />
-
-      <Embers />
-
-      {/* Objetos flotando a los lados, como reliquias de la barra. */}
-      <img
-        src={asset("/img/gen/mug.webp")}
-        alt=""
-        aria-hidden
-        className="float pointer-events-none absolute bottom-[6%] left-[-6%] w-[38vw] max-w-[300px] drop-shadow-[0_0_28px_#c1121f88] sm:left-[3%] sm:bottom-[14%] lg:left-[6%] lg:w-[21vw]"
-        style={{ ["--rot" as string]: "-8deg", translate: "calc(var(--px) * 26px) calc(var(--py) * 18px)" }}
-      />
-      <img
-        src={asset("/img/gen/wine.webp")}
-        alt=""
-        aria-hidden
-        className="float pointer-events-none absolute bottom-[4%] right-[-8%] w-[34vw] max-w-[270px] drop-shadow-[0_0_28px_#5a46ff77] sm:right-[3%] sm:bottom-[10%] lg:right-[6%] lg:w-[18vw]"
-        style={{ ["--rot" as string]: "6deg", animationDelay: "-3.5s", translate: "calc(var(--px) * 30px) calc(var(--py) * 20px)" }}
-      />
-
-      <div className="relative z-10 flex max-w-[52rem] flex-col items-center px-4 pb-[18vh] pt-28 text-center sm:pb-16">
-        <img
-          src={asset("/img/gen/emblem.webp")}
-          alt=""
-          aria-hidden
-          width={120}
-          height={120}
-          className="h-[clamp(72px,11vh,118px)] w-auto drop-shadow-[0_0_24px_#ff2b3f88]"
-        />
-        <p className="mt-3 font-script text-[clamp(2rem,4.2vw,3.2rem)] leading-[1.2] text-bone [text-shadow:0_2px_16px_#000]">
-          Arte, café y algo más
-        </p>
-        <h1 className="ignite neon mt-1 font-gothic text-[clamp(3.6rem,10.5vw,8.5rem)] font-extrabold leading-[0.9] tracking-[-0.01em]">
-          El Purgatorio
+        <h1 className="relative mt-3 sm:mt-4" aria-label="El Purgatorio">
+          <span aria-hidden className="label absolute -top-1 left-0 text-[clamp(1.1rem,2vw,1.8rem)] text-blood sm:top-1">
+            El
+          </span>
+          <span aria-hidden className="display block overflow-hidden whitespace-nowrap text-center text-[clamp(4rem,17.6vw,15.8rem)]">
+            {word.map((ch, i) => (
+              <span key={i} className={`rise ${i >= 5 ? "text-blood" : ""}`} style={{ ["--i" as string]: i }}>
+                {ch}
+              </span>
+            ))}
+          </span>
         </h1>
-        <p className="mt-5 max-w-[34ch] text-[clamp(1.1rem,1.6vw,1.35rem)] leading-snug text-bone [text-shadow:0_2px_12px_#000]">
-          Café, cócteles y cultura en una sección del Castillo del Mono Osorio, en Bogotá.
-        </p>
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-          <Plaque href="#carta">Ver la carta</Plaque>
-          <Plaque href="#pecados" glow="#7c6cff" size="sm">
-            Siete pecados
-          </Plaque>
+
+        <div className="pointer-events-none absolute inset-x-4 top-[calc(100%+2rem)] z-20 hidden justify-between sm:inset-x-8 md:flex">
+          <div className="pointer-events-auto max-w-[15rem]">
+            <p className="label text-[clamp(2rem,3vw,2.9rem)] text-blood">
+              Arte, café
+              <br />y algo más
+            </p>
+          </div>
+          <div className="pointer-events-auto max-w-[15rem] text-right">
+            <p className="label text-[1.05rem] tracking-[0.03em]">Una sección del</p>
+            <p className="label mt-1 text-[clamp(2rem,3vw,2.9rem)] text-blood">
+              Castillo del
+              <br />
+              Mono Osorio
+            </p>
+            <p className="label mt-3 text-[1.05rem] tracking-[0.03em]">{site.address}</p>
+          </div>
         </div>
       </div>
 
-      <div id="nav-sentinel" aria-hidden className="absolute left-0 top-[40svh] h-px w-px" />
+      {/* Estatua impresa, por delante del panel rojo */}
+      <div className="relative z-10 mx-auto -mt-[clamp(1.5rem,5vw,4.5rem)] flex w-full flex-1 justify-center">
+        <img
+          src={asset("/img/v2/statue.png")}
+          alt="Escultura de mármol de una mujer velada que abraza a un niño, impresa en tramado"
+          width={1200}
+          height={1800}
+          fetchPriority="high"
+          className="develop pointer-events-none absolute top-0 w-[min(86vw,540px)] md:w-[min(38vw,580px)]"
+        />
+        <Star size={44} className="absolute top-[-1.5rem] text-blood" />
+      </div>
+
+      {/* Panel rojo rasgado: sin z-index propio, para que el texto quede sobre la estatua */}
+      <div className="relative mt-[clamp(14rem,30vw,20rem)] md:mt-[clamp(10rem,14.5vw,15rem)]">
+        <div aria-hidden className="torn text-blood-dark" />
+        <div aria-hidden className="printed absolute inset-x-0 bottom-0 top-[calc(100vw*174/1536-1px)] overflow-hidden bg-blood-dark">
+          <img
+            src={asset("/img/v2/statue-red.png")}
+            alt=""
+            className="halftone-light pointer-events-none absolute bottom-0 left-[-6%] hidden w-[26vw] max-w-[380px] opacity-60 md:block"
+          />
+          <img
+            src={asset("/img/v2/statue-red.png")}
+            alt=""
+            className="halftone-light pointer-events-none absolute bottom-0 right-[-6%] hidden w-[26vw] max-w-[380px] -scale-x-100 opacity-60 md:block"
+          />
+        </div>
+        <div className="relative z-20 mx-auto flex max-w-[1400px] flex-col gap-6 px-4 pb-7 pt-4 sm:px-8 md:flex-row md:items-end md:justify-between md:pb-9">
+          <p className="display text-[clamp(3.2rem,8vw,7.5rem)] font-[300] text-bone [text-shadow:0_2px_30px_#0008]">
+            Entre la piedra
+            <br />y la luz negra
+          </p>
+          <div className="flex flex-wrap gap-3 md:flex-col md:items-end">
+            <a href="#carta" className="btn bg-bone text-ink hover:bg-blood hover:text-white">
+              <ArrowDownRight size={22} weight="bold" aria-hidden />
+              Ver la carta
+            </a>
+            <a href="#pecados" className="btn btn-ghost text-bone">
+              Siete pecados
+            </a>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

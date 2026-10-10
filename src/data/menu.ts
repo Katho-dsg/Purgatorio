@@ -95,7 +95,7 @@ export const menu: Category[] = [
   {
     id: "cafe",
     title: "Café",
-    image: { src: asset("/img/fotos/taza-calavera.webp"), alt: "Espresso cayendo en una taza con forma de calavera" },
+    image: { src: asset("/img/v2/ht-taza-calavera.png"), alt: "Espresso cayendo en una taza con forma de calavera" },
     intro: "El café que usamos es exótico y de alta calidad.",
     groups: [
       {
@@ -134,7 +134,7 @@ export const menu: Category[] = [
   {
     id: "frias",
     title: "Bebidas frías",
-    image: { src: asset("/img/fotos/chai.webp"), alt: "Chai rosa en copa con forma de corazón" },
+    image: { src: asset("/img/v2/ht-chai.png"), alt: "Chai rosa en copa con forma de corazón" },
     groups: [
       {
         items: [
@@ -166,7 +166,7 @@ export const menu: Category[] = [
   {
     id: "vino",
     title: "Vino",
-    image: { src: asset("/img/fotos/vino.webp"), alt: "Copa de vino tinto junto a un muñeco de terciopelo rojo" },
+    image: { src: asset("/img/v2/ht-vino.png"), alt: "Copa de vino tinto junto a un muñeco de terciopelo rojo" },
     groups: [
       {
         items: [
@@ -202,7 +202,7 @@ export const menu: Category[] = [
   {
     id: "cerveza",
     title: "Cerveza y licores",
-    image: { src: asset("/img/fotos/coctel.webp"), alt: "Cóctel espumoso con naranja deshidratada en el patio del castillo" },
+    image: { src: asset("/img/v2/ht-coctel.png"), alt: "Cóctel espumoso con naranja deshidratada en el patio del castillo" },
     groups: [
       {
         items: [
@@ -235,7 +235,7 @@ export const menu: Category[] = [
   {
     id: "pasteleria",
     title: "Pastelería",
-    image: { src: asset("/img/fotos/torta.webp"), alt: "Muñeco con la boca llena de torta de chocolate" },
+    image: { src: asset("/img/v2/ht-torta.png"), alt: "Muñeco con la boca llena de torta de chocolate" },
     groups: [
       {
         items: [
@@ -260,7 +260,7 @@ export const menu: Category[] = [
   {
     id: "cocina",
     title: "Cocina",
-    image: { src: asset("/img/fotos/sala-roja.webp"), alt: "Salón rojo con biblioteca, sillón morado y ventanales" },
+    image: { src: asset("/img/v2/ht-sala-roja.png"), alt: "Salón rojo con biblioteca, sillón morado y ventanales" },
     groups: [
       {
         title: "Sándwiches",

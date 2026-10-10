@@ -1,10 +1,10 @@
 "use client";
 
-import { asset } from "@/lib";
-
 import { useEffect, useState } from "react";
 import { List, X } from "@phosphor-icons/react";
 import { mapsUrl } from "@/data/site";
+import { asset } from "@/lib";
+import { Star } from "./Star";
 
 const links = [
   { href: "#historia", label: "La que sostiene" },
@@ -15,16 +15,7 @@ const links = [
 ];
 
 export function Nav() {
-  const [solid, setSolid] = useState(false);
   const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    const sentinel = document.getElementById("nav-sentinel");
-    if (!sentinel) return;
-    const io = new IntersectionObserver(([e]) => setSolid(!e.isIntersecting));
-    io.observe(sentinel);
-    return () => io.disconnect();
-  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -38,74 +29,52 @@ export function Nav() {
   }, [open]);
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-40 transition-[background-color,backdrop-filter,box-shadow] duration-500 ${
-        solid ? "bg-ink/80 shadow-[0_1px_0_#ffffff10] backdrop-blur-md" : "bg-transparent"
-      }`}
-    >
-      <nav aria-label="Principal" className="mx-auto flex h-[68px] max-w-[1400px] items-center justify-between gap-6 px-4 sm:px-8">
-        <a href="#inicio" className="flex items-center gap-3" aria-label="El Purgatorio, inicio">
-          <img src={asset("/img/gen/emblem.webp")} alt="" width={34} height={34} className="h-[34px] w-[34px] drop-shadow-[0_0_8px_#c1121f99]" />
-          <span className="bg-ink px-2.5 py-0.5 font-cond text-[1.35rem] font-semibold uppercase leading-tight tracking-[0.04em] text-bone ring-1 ring-white/15">
-            El Purgatorio
-          </span>
+    <header className="ink fixed inset-x-0 top-0 z-40 shadow-[0_1px_0_#ffffff14]">
+      <nav aria-label="Principal" className="mx-auto flex h-14 max-w-[1400px] items-center justify-between gap-6 px-4 sm:px-8">
+        <a href="#inicio" className="flex items-center gap-2.5" aria-label="El Purgatorio, inicio">
+          <img src={asset("/img/gen/emblem.webp")} alt="" width={30} height={30} className="h-[30px] w-[30px]" />
+          <span className="label text-[1.45rem] tracking-[0.02em]">El Purgatorio</span>
         </a>
 
-        <ul className="hidden items-center gap-[clamp(1rem,2.4vw,2.5rem)] lg:flex">
-          {links.map((l) => (
-            <li key={l.href}>
-              <a
-                href={l.href}
-                className="font-gothic text-[1.3rem] font-semibold text-bone/85 transition-[color,text-shadow] duration-200 hover:text-[#fff3f1] hover:[text-shadow:0_0_12px_#ff2b3f]"
-              >
+        <ul className="hidden items-center gap-5 lg:flex xl:gap-7">
+          {links.map((l, i) => (
+            <li key={l.href} className="flex items-center gap-5 xl:gap-7">
+              {i > 0 && <Star size={9} className="text-blood" />}
+              <a href={l.href} className="label text-[1.12rem] tracking-[0.04em] text-bone/80 transition-colors duration-200 hover:text-white">
                 {l.label}
               </a>
             </li>
           ))}
         </ul>
 
-        <a
-          href={mapsUrl}
-          target="_blank"
-          rel="noreferrer"
-          className="hidden font-cond text-[1.05rem] font-semibold uppercase tracking-[0.08em] text-bone ring-1 ring-blood/70 transition-[box-shadow,background-color] duration-200 hover:bg-blood/20 hover:shadow-[0_0_18px_#c1121f88] sm:inline-flex sm:h-10 sm:items-center sm:px-4"
-        >
+        <a href={mapsUrl} target="_blank" rel="noreferrer" className="label hidden h-9 items-center bg-blood px-4 text-[1.05rem] tracking-[0.06em] text-white transition-colors duration-200 hover:bg-bone hover:text-ink sm:inline-flex">
           Cómo llegar
         </a>
 
-        <button
-          type="button"
-          onClick={() => setOpen(true)}
-          className="grid h-11 w-11 place-items-center text-bone lg:hidden"
-          aria-label="Abrir menú"
-          aria-expanded={open}
-        >
+        <button type="button" onClick={() => setOpen(true)} className="grid h-11 w-11 place-items-center lg:hidden" aria-label="Abrir menú" aria-expanded={open}>
           <List size={28} weight="light" />
         </button>
       </nav>
 
       {open && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-label="Menú"
-          className="fixed inset-0 z-50 flex flex-col bg-ink/97 px-6 pb-10 pt-5 backdrop-blur-md lg:hidden"
-        >
-          <div className="flex justify-end">
+        <div role="dialog" aria-modal="true" aria-label="Menú" className="blood printed fixed inset-0 z-50 flex flex-col px-6 pb-10 pt-3 lg:hidden">
+          <div className="relative z-10 flex justify-end">
             <button type="button" onClick={() => setOpen(false)} className="grid h-11 w-11 place-items-center" aria-label="Cerrar menú">
               <X size={28} weight="light" />
             </button>
           </div>
-          <ul className="mt-6 flex flex-1 flex-col justify-center gap-5 text-center">
+          <ul className="relative z-10 mt-4 flex flex-1 flex-col justify-center gap-4">
             {links.map((l) => (
               <li key={l.href}>
-                <a href={l.href} onClick={() => setOpen(false)} className="neon font-gothic text-[2.6rem] font-extrabold">
+                <a href={l.href} onClick={() => setOpen(false)} className="display block text-[3.6rem] font-[300]">
                   {l.label}
                 </a>
               </li>
             ))}
           </ul>
-          <img src={asset("/img/gen/emblem.webp")} alt="" className="mx-auto h-16 w-16 opacity-80" />
+          <a href={mapsUrl} target="_blank" rel="noreferrer" className="btn relative z-10 justify-center bg-bone text-ink">
+            Cómo llegar
+          </a>
         </div>
       )}
     </header>

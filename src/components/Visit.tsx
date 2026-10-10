@@ -1,89 +1,69 @@
-import { asset } from "@/lib";
 import { Clock, InstagramLogo, MapPin, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
 import { instagramUrl, mapsEmbed, mapsUrl, site, whatsappUrl } from "@/data/site";
-import { Plaque } from "./Plaque";
 
 function Pending({ children }: { children: React.ReactNode }) {
-  return <span className="text-[#ff8a95]">[{children}]</span>;
+  return <span className="text-blood">[{children}]</span>;
 }
 
 export function Visit() {
   const rows = [
-    {
-      icon: MapPin,
-      label: "Dónde",
-      value: (
-        <>
-          {site.place}
-          <br />
-          {site.address}
-        </>
-      ),
-    },
+    { icon: MapPin, label: "Dónde", value: <>{site.place}<br />{site.address}</> },
     { icon: Clock, label: "Horario", value: site.hours ?? <Pending>Horario por confirmar</Pending> },
     {
       icon: InstagramLogo,
       label: "Instagram",
-      value: instagramUrl ? (
-        <a href={instagramUrl} target="_blank" rel="noreferrer" className="underline decoration-blood underline-offset-4 hover:text-white">
-          @{site.instagram}
-        </a>
-      ) : (
-        <Pending>Usuario por confirmar</Pending>
-      ),
+      value: instagramUrl ? <a href={instagramUrl} target="_blank" rel="noreferrer" className="underline decoration-blood underline-offset-4">@{site.instagram}</a> : <Pending>Usuario por confirmar</Pending>,
     },
     {
       icon: WhatsappLogo,
       label: "WhatsApp",
-      value: whatsappUrl ? (
-        <a href={whatsappUrl} target="_blank" rel="noreferrer" className="underline decoration-blood underline-offset-4 hover:text-white">
-          Escríbenos
-        </a>
-      ) : (
-        <Pending>Número por confirmar</Pending>
-      ),
+      value: whatsappUrl ? <a href={whatsappUrl} target="_blank" rel="noreferrer" className="underline decoration-blood underline-offset-4">Escríbenos</a> : <Pending>Número por confirmar</Pending>,
     },
   ];
 
   return (
-    <section id="visita" aria-labelledby="visita-title" className="relative isolate overflow-hidden py-24 sm:py-32">
-      <img src={asset("/img/fotos/fachada.webp")} alt="" aria-hidden loading="lazy" className="absolute inset-0 -z-20 h-full w-full object-cover opacity-30" />
-      <div aria-hidden className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,#0a0607_0%,#0a0607e6_45%,#0a0607b3_100%),linear-gradient(#0a0607_0%,transparent_25%,transparent_75%,#0a0607_100%)]" />
-
-      <div className="mx-auto grid max-w-[1400px] gap-14 px-4 sm:px-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:items-center">
+    <section id="visita" aria-labelledby="visita-title" className="paper relative">
+      <div aria-hidden className="torn absolute inset-x-0 top-0 -translate-y-[calc(100%-1px)] text-paper" />
+      <div className="mx-auto grid max-w-[1400px] gap-14 px-4 pb-20 pt-14 sm:px-8 sm:pb-28 sm:pt-20 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:items-center">
         <div>
-          <h2 id="visita-title" data-reveal className="neon font-gothic text-[clamp(2.8rem,6.5vw,5rem)] font-extrabold leading-[0.98]">
-            Ven al castillo
+          <h2 id="visita-title" data-reveal className="display text-[clamp(4.6rem,11vw,10rem)]">
+            Ven al
+            <br />
+            <span className="text-blood">castillo</span>
           </h2>
-          <p data-reveal className="mt-5 max-w-[42ch] text-[1.25rem] leading-relaxed text-bone/90">
+          <p data-reveal className="mt-6 max-w-[40ch] text-[1.2rem] leading-relaxed">
             Un espacio para todo público: ven con tu familia, con tus amigos o contigo misma.
           </p>
-          <dl className="mt-10 space-y-6">
+          <dl className="mt-10 grid gap-6 sm:grid-cols-2">
             {rows.map(({ icon: Icon, label, value }) => (
-              <div key={label} className="flex gap-4">
-                <Icon size={28} weight="light" className="mt-0.5 shrink-0 text-[#ff8a95]" aria-hidden />
+              <div key={label} className="flex gap-3 border-t border-ink/20 pt-4">
+                <Icon size={26} weight="regular" className="mt-0.5 shrink-0 text-blood" aria-hidden />
                 <div>
-                  <dt className="font-cond text-[1rem] uppercase tracking-[0.12em] text-bone-dim">{label}</dt>
-                  <dd className="mt-0.5 text-[1.25rem] leading-snug text-bone">{value}</dd>
+                  <dt className="label text-[1.05rem] tracking-[0.06em] text-ash">{label}</dt>
+                  <dd className="mt-1 text-[1.15rem] leading-snug">{value}</dd>
                 </div>
               </div>
             ))}
           </dl>
-          <div className="mt-10">
-            <Plaque href={mapsUrl} target="_blank" rel="noreferrer">
-              Cómo llegar
-            </Plaque>
-          </div>
+          <a href={mapsUrl} target="_blank" rel="noreferrer" className="btn btn-blood mt-10">
+            Cómo llegar
+          </a>
         </div>
 
-        <div data-reveal className="relative aspect-[4/3] w-full overflow-hidden rounded-[6px] shadow-[0_0_0_1px_#ffffff1a,0_0_0_8px_#120a0c,0_0_0_9px_#c1121f88,0_30px_80px_#000]">
-          <iframe
-            title={`Mapa: ${site.place}`}
-            src={mapsEmbed}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            className="absolute inset-0 h-full w-full border-0 [filter:invert(0.92)_hue-rotate(180deg)_saturate(0.6)_contrast(0.95)]"
-          />
+        <div data-reveal className="bg-ink p-3 shadow-[0_30px_70px_#0e0b0b55]">
+          <div className="relative aspect-[4/3] w-full overflow-hidden bg-ink-2">
+            <iframe
+              title={`Mapa: ${site.place}`}
+              src={mapsEmbed}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="absolute inset-0 h-full w-full border-0 [filter:grayscale(1)_contrast(1.1)]"
+            />
+          </div>
+          <p className="label mt-3 flex justify-between text-[1.05rem] tracking-[0.04em] text-bone">
+            <span>{site.place}</span>
+            <span className="text-blood">Bogotá</span>
+          </p>
         </div>
       </div>
     </section>

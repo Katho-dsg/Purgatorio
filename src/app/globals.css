@@ -1,34 +1,29 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ink: #0a0607;
-  --color-ink-2: #140b0d;
-  --color-stone: #2a2124;
+  --color-paper: #ece8e1;
+  --color-paper-2: #e2ddd4;
+  --color-ink: #0e0b0b;
+  --color-ink-2: #171212;
   --color-blood: #c1121f;
-  --color-blood-deep: #5e0812;
-  --color-bone: #f3ede6;
-  --color-bone-dim: #c9bcb4;
-  --color-uv: #5a46ff;
-  --color-neon: #ff2b3f;
+  --color-blood-dark: #5c0910;
+  --color-bone: #f1ece4;
+  --color-ash: #5f5754;
+  --color-ash-light: #bdb2ac;
 
-  --font-gothic: "Grenze Gotisch", "Grenze", serif;
-  --font-serif: "Grenze", Georgia, serif;
-  --font-cond: "Saira Extra Condensed", "Arial Narrow", sans-serif;
-  --font-script: "Mrs Saint Delafield", cursive;
+  --font-display: "Noto Serif Display Variable", "Times New Roman", serif;
+  --font-serif: "Source Serif 4 Variable", Georgia, serif;
+  --font-label: "Saira Extra Condensed", "Arial Narrow", sans-serif;
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-:root {
-  color-scheme: dark;
-  --glow-red: 0 0 2px #fff4, 0 0 10px #ff2b3fcc, 0 0 26px #c1121faa, 0 0 60px #c1121f66;
-  --glow-uv: 0 0 2px #fff4, 0 0 10px #7c6cffcc, 0 0 26px #5a46ffaa, 0 0 60px #5a46ff66;
-}
+/* --paper-url y --torn-url llegan desde layout.tsx para respetar el basePath de GitHub Pages. */
 
 html {
   background: var(--color-ink);
   scroll-behavior: smooth;
-  scrollbar-color: var(--color-blood-deep) var(--color-ink);
+  scrollbar-color: var(--color-blood) var(--color-ink);
 }
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -38,9 +33,9 @@ html {
 
 body {
   background: var(--color-ink);
-  color: var(--color-bone);
+  color: var(--color-ink);
   font-family: var(--font-serif);
-  font-size: 1.125rem;
+  font-size: 1.0625rem;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;
@@ -51,13 +46,10 @@ body {
   background: var(--color-blood);
   color: #fff;
 }
-
 :focus-visible {
-  outline: 2px solid var(--color-neon);
+  outline: 2px solid var(--color-blood);
   outline-offset: 3px;
-  border-radius: 2px;
 }
-
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -65,212 +57,217 @@ body {
   background: var(--color-ink);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-blood-deep);
+  background: var(--color-blood);
   border: 2px solid var(--color-ink);
-  border-radius: 6px;
 }
 
-/* ---------- Neón ---------- */
-.neon {
-  color: #fff3f1;
-  text-shadow: var(--glow-red);
-}
-.neon-uv {
-  color: #f1efff;
-  text-shadow: var(--glow-uv);
-}
-
-/* El título se enciende una vez, como un tubo de neón al conectarse. */
-@keyframes ignite {
-  0% { opacity: 0.08; text-shadow: none; }
-  8% { opacity: 1; text-shadow: var(--glow-red); }
-  11% { opacity: 0.2; text-shadow: none; }
-  18% { opacity: 1; text-shadow: var(--glow-red); }
-  21% { opacity: 0.35; text-shadow: none; }
-  34%, 100% { opacity: 1; text-shadow: var(--glow-red); }
-}
-@keyframes hum {
-  0%, 92%, 100% { opacity: 1; }
-  93% { opacity: 0.55; }
-  94% { opacity: 1; }
-  96% { opacity: 0.75; }
-}
-.ignite {
-  animation: ignite 1.8s steps(1, end) 0.3s both, hum 7s linear 2.4s infinite;
-}
-
-/* ---------- Placa ornamental (botones) ---------- */
-.plaque {
-  --plaque-glow: #ff2b3f;
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
-  min-height: 3.5rem;
-  padding: 0 2.25rem;
-  font-family: var(--font-gothic);
-  font-weight: 600;
-  font-size: 1.45rem;
-  line-height: 1;
-  color: #fff3f1;
-  text-shadow: 0 0 10px color-mix(in srgb, var(--plaque-glow) 80%, transparent);
-  background:
-    radial-gradient(120% 140% at 50% 0%, #3a2a2d 0%, #160c0e 60%, #0c0607 100%);
-  clip-path: polygon(14px 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 14px 100%, 0 50%);
-  box-shadow:
-    inset 0 0 0 1px #ffffff1f,
-    inset 0 0 0 4px #0a0607,
-    inset 0 0 0 5px color-mix(in srgb, var(--plaque-glow) 55%, transparent),
-    inset 0 0 22px color-mix(in srgb, var(--plaque-glow) 25%, transparent);
-  transition:
-    transform 160ms var(--ease-out-expo),
-    box-shadow 260ms ease,
-    text-shadow 260ms ease;
-  white-space: nowrap;
-  cursor: pointer;
-  user-select: none;
-}
-.plaque-wrap {
-  display: inline-flex;
-  filter: drop-shadow(0 6px 14px #000c) drop-shadow(0 0 0 transparent);
-  transition: filter 260ms ease;
-}
-@media (hover: hover) and (pointer: fine) {
-  .plaque-wrap:hover {
-    filter: drop-shadow(0 6px 14px #000c) drop-shadow(0 0 16px color-mix(in srgb, var(--plaque-glow, #ff2b3f) 70%, transparent));
+/* Clases de componente en su capa: las utilidades de Tailwind pueden sobreescribirlas. */
+@layer components {
+  /* ---------- Superficies impresas ---------- */
+  .paper {
+    background-color: var(--color-paper);
+    background-image: var(--paper-url);
+    background-size: 900px auto;
+    color: var(--color-ink);
   }
-  .plaque:hover {
-    text-shadow: 0 0 4px #fff8, 0 0 16px var(--plaque-glow);
-    box-shadow:
-      inset 0 0 0 1px #ffffff2a,
-      inset 0 0 0 4px #0a0607,
-      inset 0 0 0 5px var(--plaque-glow),
-      inset 0 0 30px color-mix(in srgb, var(--plaque-glow) 45%, transparent);
+  .blood {
+    background-color: var(--color-blood);
+    color: var(--color-bone);
   }
-}
-.plaque:active {
-  transform: scale(0.97);
-}
-.plaque-sm {
-  min-height: 2.75rem;
-  padding: 0 1.5rem;
-  font-size: 1.15rem;
-}
+  .ink {
+    background-color: var(--color-ink);
+    color: var(--color-bone);
+  }
+  /* Grano de papel sobre los paneles de color, para que se lean como impresos. */
+  .printed {
+    position: relative;
+    isolation: isolate;
+  }
+  .printed::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background-image: var(--paper-url);
+    background-size: 900px auto;
+    mix-blend-mode: multiply;
+    opacity: 0.35;
+  }
 
-/* ---------- Título de sección con ornamentos ---------- */
-.ornate-title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(0.75rem, 2vw, 1.5rem);
-  text-align: center;
-}
-.ornate-title::before,
-.ornate-title::after {
-  content: "";
-  flex: 0 1 7rem;
-  height: 9px;
-  background:
-    linear-gradient(currentColor, currentColor) center / 100% 1px no-repeat,
-    linear-gradient(45deg, transparent 40%, currentColor 40% 60%, transparent 60%) right center / 9px 9px no-repeat;
-  opacity: 0.7;
-}
-.ornate-title::after {
-  transform: scaleX(-1);
-}
-@media (max-width: 639px) {
-  .ornate-title::before,
-  .ornate-title::after {
+  /* ---------- Tipografía ---------- */
+  .display {
+    font-family: var(--font-display);
+    font-stretch: 62.5%;
+    font-weight: 340;
+    text-transform: uppercase;
+    line-height: 0.84;
+    letter-spacing: -0.01em;
+  }
+  .label {
+    font-family: var(--font-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 0.95;
+    letter-spacing: 0.01em;
+  }
+  .micro {
+    font-family: var(--font-serif);
+    font-size: 0.75rem;
+    line-height: 1.4;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* Estrella de cuatro puntas. */
+  .star {
+    display: inline-block;
+    width: var(--s, 18px);
+    height: var(--s, 18px);
+    background: currentColor;
+    clip-path: polygon(50% 0, 57% 43%, 100% 50%, 57% 57%, 50% 100%, 43% 57%, 0 50%, 43% 43%);
+    flex: none;
+  }
+
+  /* ---------- Botones ---------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    height: 3.25rem;
+    padding: 0 1.5rem;
+    font-family: var(--font-label);
+    font-weight: 700;
+    font-size: 1.35rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    transition:
+      transform 160ms var(--ease-out-expo),
+      background-color 200ms ease,
+      color 200ms ease,
+      box-shadow 200ms ease;
+  }
+  .btn:active {
+    transform: scale(0.97);
+  }
+  .btn-blood {
+    background: var(--color-blood);
+    color: #fff;
+  }
+  .btn-ghost {
+    box-shadow: inset 0 0 0 2px currentColor;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .btn-blood:hover {
+      background: var(--color-ink);
+    }
+    .btn-ghost:hover {
+      background: var(--color-bone);
+      color: var(--color-ink);
+      box-shadow: inset 0 0 0 2px var(--color-bone);
+    }
+    .btn-ghost.on-paper:hover {
+      background: var(--color-ink);
+      color: var(--color-paper);
+      box-shadow: inset 0 0 0 2px var(--color-ink);
+    }
+  }
+
+  /* Duotono rojo y negro sobre fotos: el blanco se vuelve sangre. */
+  .duo {
+    position: relative;
+    background: var(--color-blood);
+    overflow: hidden;
+  }
+  .duo > img {
+    filter: grayscale(1) contrast(1.3) brightness(1.08);
+    mix-blend-mode: multiply;
+    transition:
+      filter 600ms var(--ease-out-expo),
+      transform 700ms var(--ease-out-expo);
+  }
+  .duo.color > img {
+    filter: none;
+    mix-blend-mode: normal;
+  }
+
+  /* Halftone impreso: puntos negros sobre blanco que se funden con el papel, o puntos rojos sobre negro. */
+  .halftone {
+    mix-blend-mode: multiply;
+  }
+  .halftone-light {
+    mix-blend-mode: screen;
+  }
+
+  /* Borde rasgado: la silueta del papel generado como máscara, pintada con el color del texto. */
+  .torn {
+    width: 100%;
+    aspect-ratio: 1536 / 174;
+    background: currentColor;
+    -webkit-mask: var(--torn-url) center / 100% 100% no-repeat;
+    mask: var(--torn-url) center / 100% 100% no-repeat;
+  }
+
+  /* Puntos guía entre nombre y precio. */
+  .leader {
+    flex: 1;
+    min-width: 1.25rem;
+    border-bottom: 1px dotted currentColor;
+    opacity: 0.4;
+    transform: translateY(-0.3em);
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
 }
 
-/* ---------- Revelado al hacer scroll ---------- */
+/* ---------- Movimiento ---------- */
+@keyframes rise {
+  from { transform: translateY(102%); }
+  to { transform: none; }
+}
+@keyframes develop {
+  from { opacity: 0; filter: blur(12px); transform: scale(1.03); }
+  to { opacity: 1; filter: none; transform: none; }
+}
+@keyframes fade {
+  from { opacity: 0; filter: blur(4px); }
+  to { opacity: 1; filter: none; }
+}
+
+/* El nombre sube letra por letra desde una línea de corte; la estatua se revela como una impresión. */
+.rise {
+  display: inline-block;
+  animation: rise 1.1s var(--ease-out-expo) both;
+  animation-delay: calc(var(--i, 0) * 45ms + 150ms);
+}
+.develop {
+  animation: develop 1.8s var(--ease-out-expo) 0.35s both;
+}
+
 @media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
   [data-reveal] {
     opacity: 0;
-    transform: translateY(28px);
-    filter: blur(6px);
+    transform: translateY(24px);
     transition:
-      opacity 900ms var(--ease-out-expo),
-      transform 900ms var(--ease-out-expo),
-      filter 900ms var(--ease-out-expo);
+      opacity 800ms var(--ease-out-expo),
+      transform 800ms var(--ease-out-expo);
     transition-delay: var(--reveal-delay, 0ms);
   }
   [data-reveal][data-shown] {
     opacity: 1;
     transform: none;
-    filter: none;
   }
-}
-
-/* ---------- Atmósfera ---------- */
-@keyframes torch {
-  0%, 100% { opacity: 0.85; transform: scale(1); }
-  20% { opacity: 1; transform: scale(1.06); }
-  40% { opacity: 0.7; transform: scale(0.97); }
-  60% { opacity: 0.95; transform: scale(1.03); }
-  80% { opacity: 0.78; transform: scale(0.99); }
-}
-@keyframes drift {
-  from { transform: translate3d(-6%, 0, 0); }
-  to { transform: translate3d(6%, 0, 0); }
-}
-@keyframes float {
-  0%, 100% { transform: translate3d(0, 0, 0) rotate(var(--rot, 0deg)); }
-  50% { transform: translate3d(0, -14px, 0) rotate(calc(var(--rot, 0deg) + 2deg)); }
-}
-@keyframes marquee {
-  to { transform: translate3d(-50%, 0, 0); }
-}
-
-.torch {
-  animation: torch 2.4s ease-in-out infinite;
-}
-.fog {
-  animation: drift 26s ease-in-out infinite alternate;
-}
-.float {
-  animation: float 7s ease-in-out infinite;
-}
-.marquee {
-  animation: marquee 60s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .torch,
-  .fog,
-  .float,
-  .marquee,
-  .ignite {
-    animation: none !important;
-  }
-  .ignite {
-    text-shadow: var(--glow-red);
-  }
-}
-
-/* Puntos guía entre nombre y precio en la carta. */
-.leader {
-  flex: 1;
-  min-width: 1.5rem;
-  border-bottom: 1px dotted #c9bcb455;
-  transform: translateY(-0.35em);
-}
-
-.no-scrollbar {
-  scrollbar-width: none;
-}
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-
-@keyframes fade {
-  from { opacity: 0; filter: blur(4px); transform: scale(0.98); }
-  to { opacity: 1; filter: none; transform: none; }
-}
-@media (prefers-reduced-motion: reduce) {
+  .rise,
+  .develop,
   [class*="animate-[fade"] {
     animation: none !important;
   }
