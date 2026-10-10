@@ -1,5 +1,7 @@
 "use client";
 
+import { asset } from "@/lib";
+
 import { useState } from "react";
 import { ArrowLeft, ArrowRight } from "@phosphor-icons/react";
 import { Frame } from "./Frame";
@@ -14,10 +16,10 @@ const rooms: Room[] = [
     label: "Los salones",
     glow: "#ff2b3f",
     shots: [
-      { src: "/img/fotos/arco.webp", alt: "Arco de piedra del castillo pintado de rojo y blanco", caption: "Arcos de piedra, pintados de sangre y hueso" },
-      { src: "/img/fotos/sala-roja.webp", alt: "Salón rojo con biblioteca y sillón morado", caption: "El salón rojo y su biblioteca" },
-      { src: "/img/fotos/rostro.webp", alt: "Gran pintura de un rostro de mujer en una pared roja", caption: "Rostros que no apartan la mirada" },
-      { src: "/img/fotos/patio.webp", alt: "Personas conversando en el patio del castillo", caption: "El patio, bajo las luces" },
+      { src: asset("/img/fotos/arco.webp"), alt: "Arco de piedra del castillo pintado de rojo y blanco", caption: "Arcos de piedra, pintados de sangre y hueso" },
+      { src: asset("/img/fotos/sala-roja.webp"), alt: "Salón rojo con biblioteca y sillón morado", caption: "El salón rojo y su biblioteca" },
+      { src: asset("/img/fotos/rostro.webp"), alt: "Gran pintura de un rostro de mujer en una pared roja", caption: "Rostros que no apartan la mirada" },
+      { src: asset("/img/fotos/patio.webp"), alt: "Personas conversando en el patio del castillo", caption: "El patio, bajo las luces" },
     ],
   },
   {
@@ -25,10 +27,10 @@ const rooms: Room[] = [
     label: "Luz negra",
     glow: "#7c6cff",
     shots: [
-      { src: "/img/fotos/sala-uv.webp", alt: "Sala de luz negra con un niño de yeso y una pintura fluorescente", caption: "La sala de luz negra" },
-      { src: "/img/fotos/galeria-uv.webp", alt: "Pared de cuadros bajo luz ultravioleta", caption: "Obra que solo se ve en la oscuridad" },
-      { src: "/img/fotos/muneco-jaula.webp", alt: "Muñeco tatuado dentro de una jaula de alambre", caption: "Encierros" },
-      { src: "/img/fotos/figura-uv.webp", alt: "Figura con máscara rosada bajo luz azul", caption: "Lo que brilla cuando se apaga la luz" },
+      { src: asset("/img/fotos/sala-uv.webp"), alt: "Sala de luz negra con un niño de yeso y una pintura fluorescente", caption: "La sala de luz negra" },
+      { src: asset("/img/fotos/galeria-uv.webp"), alt: "Pared de cuadros bajo luz ultravioleta", caption: "Obra que solo se ve en la oscuridad" },
+      { src: asset("/img/fotos/muneco-jaula.webp"), alt: "Muñeco tatuado dentro de una jaula de alambre", caption: "Encierros" },
+      { src: asset("/img/fotos/figura-uv.webp"), alt: "Figura con máscara rosada bajo luz azul", caption: "Lo que brilla cuando se apaga la luz" },
     ],
   },
   {
@@ -36,10 +38,10 @@ const rooms: Room[] = [
     label: "Lo que callan",
     glow: "#ff3dbb",
     shots: [
-      { src: "/img/fotos/marco-brazos.webp", alt: "Brazos con cicatrices dentro de un marco dorado", caption: "Las marcas que se enmarcan" },
-      { src: "/img/fotos/muneco-rejas.webp", alt: "Muñeco tatuado detrás de unos barrotes", caption: "Detrás de los barrotes" },
-      { src: "/img/fotos/muneco-cafe.webp", alt: "Muñeco con hojas secas sosteniendo una taza de café", caption: "Compañía para el café" },
-      { src: "/img/fotos/incomodate.webp", alt: "Afiche del taller de dibujo ciego Incomódate", caption: "Incomódate: belleza en lo imperfecto" },
+      { src: asset("/img/fotos/marco-brazos.webp"), alt: "Brazos con cicatrices dentro de un marco dorado", caption: "Las marcas que se enmarcan" },
+      { src: asset("/img/fotos/muneco-rejas.webp"), alt: "Muñeco tatuado detrás de unos barrotes", caption: "Detrás de los barrotes" },
+      { src: asset("/img/fotos/muneco-cafe.webp"), alt: "Muñeco con hojas secas sosteniendo una taza de café", caption: "Compañía para el café" },
+      { src: asset("/img/fotos/incomodate.webp"), alt: "Afiche del taller de dibujo ciego Incomódate", caption: "Incomódate: belleza en lo imperfecto" },
     ],
   },
   {
@@ -47,10 +49,10 @@ const rooms: Room[] = [
     label: "La barra",
     glow: "#f3c58a",
     shots: [
-      { src: "/img/fotos/taza-calavera.webp", alt: "Espresso cayendo en una taza de calavera", caption: "El espresso de la casa" },
-      { src: "/img/fotos/coctel.webp", alt: "Cóctel espumoso en una mesa de mosaico", caption: "Cócteles en el patio" },
-      { src: "/img/fotos/chai.webp", alt: "Chai rosa en copa de corazón", caption: "Chai de rosas" },
-      { src: "/img/fotos/vino.webp", alt: "Copa de vino tinto y muñeco de terciopelo", caption: "Vino para los fríos bogotanos" },
+      { src: asset("/img/fotos/taza-calavera.webp"), alt: "Espresso cayendo en una taza de calavera", caption: "El espresso de la casa" },
+      { src: asset("/img/fotos/coctel.webp"), alt: "Cóctel espumoso en una mesa de mosaico", caption: "Cócteles en el patio" },
+      { src: asset("/img/fotos/chai.webp"), alt: "Chai rosa en copa de corazón", caption: "Chai de rosas" },
+      { src: asset("/img/fotos/vino.webp"), alt: "Copa de vino tinto y muñeco de terciopelo", caption: "Vino para los fríos bogotanos" },
     ],
   },
 ];
@@ -68,7 +70,7 @@ export function Gallery() {
       id="galeria"
       aria-labelledby="galeria-title"
       className="relative isolate overflow-hidden py-24 sm:py-32"
-      style={{ backgroundImage: "linear-gradient(#0a0607 0%, #0a0607b8 18%, #0a0607b8 82%, #0a0607 100%), url(/img/gen/wall.webp)", backgroundSize: "cover", backgroundPosition: "center" }}
+      style={{ backgroundImage: `linear-gradient(#0a0607 0%, #0a0607b8 18%, #0a0607b8 82%, #0a0607 100%), url(${asset("/img/gen/wall.webp")})`, backgroundSize: "cover", backgroundPosition: "center" }}
     >
       <div className="mx-auto max-w-[1400px] px-4 sm:px-8">
         <SectionTitle id="galeria-title">El castillo por dentro</SectionTitle>

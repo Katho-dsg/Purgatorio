@@ -1,9 +1,10 @@
+import { asset } from "@/lib";
 // "La que sostiene": la historia de la figura del logo, bajo la luna roja.
 export function Story() {
   return (
     <section id="historia" className="relative isolate -mt-[30px] overflow-hidden pb-28 pt-36 sm:pb-36 sm:pt-44">
       <img
-        src="/img/gen/moon.webp"
+        src={asset("/img/gen/moon.webp")}
         alt=""
         aria-hidden
         loading="lazy"

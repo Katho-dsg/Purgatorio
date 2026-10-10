@@ -1,3 +1,4 @@
+import { asset } from "@/lib";
 // Carta tomada de menu_purgatorio_vino_qr.pdf. Precios en pesos colombianos.
 
 export type Item = { name: string; price: string; note?: string; detail?: string };
@@ -25,7 +26,7 @@ export const sins: Sin[] = [
     price: "$42.000",
     description:
       "Chispeante y seductor. Vodka, granadina y limón arden con el picor de la ginger beer, suavizados por un toque dulce. Entra como un beso prohibido... y deja ganas de más.",
-    image: "/img/gen/lujuria.webp",
+    image: asset("/img/gen/lujuria.webp"),
     glow: "#ff2b3f",
   },
   {
@@ -34,7 +35,7 @@ export const sins: Sin[] = [
     price: "$42.000",
     description:
       "Oscuro y lento como un atardecer sin prisa. Naranja dulce, vodka suave y un toque de granadina, envueltos en la negrura sigilosa del carbón activado. Te hunde en su calma.",
-    image: "/img/gen/pereza.webp",
+    image: asset("/img/gen/pereza.webp"),
     glow: "#8f6bff",
   },
   {
@@ -43,7 +44,7 @@ export const sins: Sin[] = [
     price: "$42.000",
     description:
       "Dulce, cítrico y atrevido. Gin, maracuyá y limón se funden con el amargo sutil del aperol, suavizados por sirope y espuma de clara. Un pecado que no se resiste... se repite.",
-    image: "/img/gen/gula.webp",
+    image: asset("/img/gen/gula.webp"),
     glow: "#ffb347",
   },
   {
@@ -52,7 +53,7 @@ export const sins: Sin[] = [
     price: "$42.000",
     description:
       "Ron, blue curaçao, sirope de lychee, limón y triple sec. Dulce, cítrico y tan llamativo que hará que todos quieran el tuyo.",
-    image: "/img/gen/envidia.webp",
+    image: asset("/img/gen/envidia.webp"),
     glow: "#3d8bff",
   },
   {
@@ -61,7 +62,7 @@ export const sins: Sin[] = [
     price: "$42.000",
     description:
       "Tequila con limón y frambuesa en una mezcla que no pide aprobación... se impone. Ácida, dulce y desafiante, como quien sabe que siempre será el centro.",
-    image: "/img/gen/soberbia.webp",
+    image: asset("/img/gen/soberbia.webp"),
     glow: "#ff3d8b",
   },
   {
@@ -70,7 +71,7 @@ export const sins: Sin[] = [
     price: "$42.000",
     description:
       "Brillante, amarga y codiciosa. Ron blanco, limón y miel se mezclan con el carácter del campari en un trago que lo tiene todo: dulzura, acidez y fuego. Y no deja nada para nadie.",
-    image: "/img/gen/avaricia.webp",
+    image: asset("/img/gen/avaricia.webp"),
     glow: "#e8b64a",
   },
   {
@@ -79,7 +80,7 @@ export const sins: Sin[] = [
     price: "$42.000",
     description:
       "Tequila, campari, triple sec y miel arden con el filo del tabasco. Coronado con sal negra, es un cóctel intenso, amargo y picante, hecho para quienes disfrutan el fuego en cada sorbo.",
-    image: "/img/gen/ira.webp",
+    image: asset("/img/gen/ira.webp"),
     glow: "#ff5a1f",
   },
 ];
@@ -94,7 +95,7 @@ export const menu: Category[] = [
   {
     id: "cafe",
     title: "Café",
-    image: { src: "/img/fotos/taza-calavera.webp", alt: "Espresso cayendo en una taza con forma de calavera" },
+    image: { src: asset("/img/fotos/taza-calavera.webp"), alt: "Espresso cayendo en una taza con forma de calavera" },
     intro: "El café que usamos es exótico y de alta calidad.",
     groups: [
       {
@@ -133,7 +134,7 @@ export const menu: Category[] = [
   {
     id: "frias",
     title: "Bebidas frías",
-    image: { src: "/img/fotos/chai.webp", alt: "Chai rosa en copa con forma de corazón" },
+    image: { src: asset("/img/fotos/chai.webp"), alt: "Chai rosa en copa con forma de corazón" },
     groups: [
       {
         items: [
@@ -165,7 +166,7 @@ export const menu: Category[] = [
   {
     id: "vino",
     title: "Vino",
-    image: { src: "/img/fotos/vino.webp", alt: "Copa de vino tinto junto a un muñeco de terciopelo rojo" },
+    image: { src: asset("/img/fotos/vino.webp"), alt: "Copa de vino tinto junto a un muñeco de terciopelo rojo" },
     groups: [
       {
         items: [
@@ -201,7 +202,7 @@ export const menu: Category[] = [
   {
     id: "cerveza",
     title: "Cerveza y licores",
-    image: { src: "/img/fotos/coctel.webp", alt: "Cóctel espumoso con naranja deshidratada en el patio del castillo" },
+    image: { src: asset("/img/fotos/coctel.webp"), alt: "Cóctel espumoso con naranja deshidratada en el patio del castillo" },
     groups: [
       {
         items: [
@@ -234,7 +235,7 @@ export const menu: Category[] = [
   {
     id: "pasteleria",
     title: "Pastelería",
-    image: { src: "/img/fotos/torta.webp", alt: "Muñeco con la boca llena de torta de chocolate" },
+    image: { src: asset("/img/fotos/torta.webp"), alt: "Muñeco con la boca llena de torta de chocolate" },
     groups: [
       {
         items: [
@@ -259,7 +260,7 @@ export const menu: Category[] = [
   {
     id: "cocina",
     title: "Cocina",
-    image: { src: "/img/fotos/sala-roja.webp", alt: "Salón rojo con biblioteca, sillón morado y ventanales" },
+    image: { src: asset("/img/fotos/sala-roja.webp"), alt: "Salón rojo con biblioteca, sillón morado y ventanales" },
     groups: [
       {
         title: "Sándwiches",

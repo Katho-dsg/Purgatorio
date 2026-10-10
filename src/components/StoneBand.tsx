@@ -1,3 +1,4 @@
+import { asset } from "@/lib";
 // Friso de piedra con inscripción, en el borde entre el pasillo y la historia.
 const words = ["Memento mori", "Arte, café y algo más", "Entre la piedra y la luz negra", "Lo que no se dice también pesa"];
 
@@ -8,7 +9,7 @@ export function StoneBand() {
       <div
         className="relative h-[86px] overflow-hidden bg-stone sm:h-[96px]"
         style={{
-          backgroundImage: "linear-gradient(#0a0607aa, #0a0607cc), url(/img/gen/wall.webp)",
+          backgroundImage: `linear-gradient(#0a0607aa, #0a0607cc), url(${asset("/img/gen/wall.webp")})`,
           backgroundSize: "cover, 900px auto",
           backgroundPosition: "center",
           clipPath: "polygon(0 0, 100% 0, 100% 72%, 53.5% 72%, 50% 100%, 46.5% 72%, 0 72%)",

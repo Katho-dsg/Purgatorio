@@ -1,3 +1,4 @@
+import { asset } from "@/lib";
 import { Clock, InstagramLogo, MapPin, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
 import { instagramUrl, mapsEmbed, mapsUrl, site, whatsappUrl } from "@/data/site";
 import { Plaque } from "./Plaque";
@@ -46,7 +47,7 @@ export function Visit() {
 
   return (
     <section id="visita" aria-labelledby="visita-title" className="relative isolate overflow-hidden py-24 sm:py-32">
-      <img src="/img/fotos/fachada.webp" alt="" aria-hidden loading="lazy" className="absolute inset-0 -z-20 h-full w-full object-cover opacity-30" />
+      <img src={asset("/img/fotos/fachada.webp")} alt="" aria-hidden loading="lazy" className="absolute inset-0 -z-20 h-full w-full object-cover opacity-30" />
       <div aria-hidden className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,#0a0607_0%,#0a0607e6_45%,#0a0607b3_100%),linear-gradient(#0a0607_0%,transparent_25%,transparent_75%,#0a0607_100%)]" />
 
       <div className="mx-auto grid max-w-[1400px] gap-14 px-4 sm:px-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:items-center">

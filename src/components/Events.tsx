@@ -1,30 +1,31 @@
+import { asset } from "@/lib";
 import { instagramUrl, site } from "@/data/site";
 import { SectionTitle } from "./SectionTitle";
 
 const events = [
   {
-    src: "/img/fotos/tarot.webp",
+    src: asset("/img/fotos/tarot.webp"),
     alt: "Afiche de Tarot en El Purgatorio, con un castillo y una luna",
     title: "Tarot en el castillo",
     text: "Noches de lectura con el Oráculo de cristal.",
     span: "md:col-span-5 md:row-span-2",
   },
   {
-    src: "/img/fotos/fuego.webp",
+    src: asset("/img/fotos/fuego.webp"),
     alt: "Artista girando fuego en la noche",
     title: "Noches de fuego",
     text: "Performance, música y fuego en el patio.",
     span: "md:col-span-7",
   },
   {
-    src: "/img/fotos/incomodate.webp",
+    src: asset("/img/fotos/incomodate.webp"),
     alt: "Afiche del taller de dibujo ciego Incomódate",
     title: "Incomódate",
     text: "Taller de dibujo ciego: belleza en lo imperfecto.",
     span: "md:col-span-3",
   },
   {
-    src: "/img/fotos/ecos.webp",
+    src: asset("/img/fotos/ecos.webp"),
     alt: "Afiche Ecos de un amor después de la muerte, con calaveras para pintar",
     title: "Ecos de un amor",
     text: "Kits para pintar calaveras, para ir en pareja o en familia.",

@@ -1,5 +1,7 @@
 "use client";
 
+import { asset } from "@/lib";
+
 import { useEffect, useRef } from "react";
 import { Plaque } from "./Plaque";
 import { Embers } from "./Embers";
@@ -46,7 +48,7 @@ export function Hero() {
         style={{ transform: "translate(calc(-50% + var(--px) * -18px), calc(-50% + var(--py) * -12px)) scale(1.04)" }}
       >
         <img
-          src="/img/gen/hero.webp"
+          src={asset("/img/gen/hero.webp")}
           alt=""
           fetchPriority="high"
           className="absolute inset-0 h-full w-full object-cover"
@@ -73,14 +75,14 @@ export function Hero() {
 
       {/* Objetos flotando a los lados, como reliquias de la barra. */}
       <img
-        src="/img/gen/mug.webp"
+        src={asset("/img/gen/mug.webp")}
         alt=""
         aria-hidden
         className="float pointer-events-none absolute bottom-[6%] left-[-6%] w-[38vw] max-w-[300px] drop-shadow-[0_0_28px_#c1121f88] sm:left-[3%] sm:bottom-[14%] lg:left-[6%] lg:w-[21vw]"
         style={{ ["--rot" as string]: "-8deg", translate: "calc(var(--px) * 26px) calc(var(--py) * 18px)" }}
       />
       <img
-        src="/img/gen/wine.webp"
+        src={asset("/img/gen/wine.webp")}
         alt=""
         aria-hidden
         className="float pointer-events-none absolute bottom-[4%] right-[-8%] w-[34vw] max-w-[270px] drop-shadow-[0_0_28px_#5a46ff77] sm:right-[3%] sm:bottom-[10%] lg:right-[6%] lg:w-[18vw]"
@@ -89,7 +91,7 @@ export function Hero() {
 
       <div className="relative z-10 flex max-w-[52rem] flex-col items-center px-4 pb-[18vh] pt-28 text-center sm:pb-16">
         <img
-          src="/img/gen/emblem.webp"
+          src={asset("/img/gen/emblem.webp")}
           alt=""
           aria-hidden
           width={120}

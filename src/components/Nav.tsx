@@ -1,5 +1,7 @@
 "use client";
 
+import { asset } from "@/lib";
+
 import { useEffect, useState } from "react";
 import { List, X } from "@phosphor-icons/react";
 import { mapsUrl } from "@/data/site";
@@ -43,7 +45,7 @@ export function Nav() {
     >
       <nav aria-label="Principal" className="mx-auto flex h-[68px] max-w-[1400px] items-center justify-between gap-6 px-4 sm:px-8">
         <a href="#inicio" className="flex items-center gap-3" aria-label="El Purgatorio, inicio">
-          <img src="/img/gen/emblem.webp" alt="" width={34} height={34} className="h-[34px] w-[34px] drop-shadow-[0_0_8px_#c1121f99]" />
+          <img src={asset("/img/gen/emblem.webp")} alt="" width={34} height={34} className="h-[34px] w-[34px] drop-shadow-[0_0_8px_#c1121f99]" />
           <span className="bg-ink px-2.5 py-0.5 font-cond text-[1.35rem] font-semibold uppercase leading-tight tracking-[0.04em] text-bone ring-1 ring-white/15">
             El Purgatorio
           </span>
@@ -103,7 +105,7 @@ export function Nav() {
               </li>
             ))}
           </ul>
-          <img src="/img/gen/emblem.webp" alt="" className="mx-auto h-16 w-16 opacity-80" />
+          <img src={asset("/img/gen/emblem.webp")} alt="" className="mx-auto h-16 w-16 opacity-80" />
         </div>
       )}
     </header>
