@@ -9,6 +9,20 @@ export function Carta() {
   const [idx, setIdx] = useState(0);
   const cat = menu[idx];
 
+  // Al cambiar de categoría, vuelve al inicio de la lista (justo bajo la barra y las pestañas fijas).
+  const pick = (k: number) => {
+    if (k === idx) return;
+    setIdx(k);
+    const panel = document.getElementById("carta-panel");
+    const bar = document.querySelector<HTMLElement>('[role="tablist"]');
+    if (!panel || !bar) return;
+    const sticky = window.matchMedia("(max-width: 639px)").matches;
+    const offset = 56 + (sticky ? bar.offsetHeight : 0) + 16;
+    const top = panel.getBoundingClientRect().top + window.scrollY - offset;
+    // Solo sube si el usuario está más abajo del inicio de la lista.
+    if (window.scrollY > top) window.scrollTo({ top, behavior: "auto" });
+  };
+
   return (
     <section id="carta" aria-labelledby="carta-title" className="paper relative">
       <div aria-hidden className="torn absolute inset-x-0 top-0 -translate-y-[calc(100%-1px)] text-paper" />
@@ -36,7 +50,7 @@ export function Carta() {
                 aria-selected={on}
                 aria-controls="carta-panel"
                 id={`tab-${c.id}`}
-                onClick={() => setIdx(k)}
+                onClick={() => pick(k)}
                 className={`label flex h-14 shrink-0 items-center gap-2 px-3 text-[1.3rem] tracking-[0.03em] transition-colors duration-200 sm:px-4 ${
                   on ? "text-blood" : "text-ink/60 hover:text-ink"
                 }`}
