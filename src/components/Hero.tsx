@@ -54,14 +54,16 @@ export function Hero() {
 
       {/* Muñeco enjaulado impreso en tramado, por delante del panel rojo */}
       <div className="relative z-10 mx-auto -mt-[clamp(1.5rem,5vw,4.5rem)] flex w-full flex-1 justify-center">
-        <img
-          src={asset("/img/v2/doll.png")}
-          alt="Muñeco tatuado con un 666 en la panza, encerrado en una jaula de alambre"
-          width={1200}
-          height={1800}
-          fetchPriority="high"
-          className="develop pointer-events-none absolute top-0 w-[min(92vw,560px)] md:w-[min(34vw,520px)]"
-        />
+        <div className="float pointer-events-none absolute top-0 w-[min(92vw,560px)] md:w-[min(34vw,520px)]">
+          <img
+            src={asset("/img/v2/doll.png")}
+            alt="Muñeco tatuado con un 666 en la panza, encerrado en una jaula de alambre"
+            width={1200}
+            height={1800}
+            fetchPriority="high"
+            className="develop w-full"
+          />
+        </div>
         <Star size={44} className="absolute top-[-1.5rem] text-blood" />
       </div>
 
