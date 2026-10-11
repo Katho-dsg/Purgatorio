@@ -17,7 +17,7 @@ export function Carta() {
     const bar = document.querySelector<HTMLElement>('[role="tablist"]');
     if (!panel || !bar) return;
     const sticky = window.matchMedia("(max-width: 639px)").matches;
-    const offset = 56 + (sticky ? bar.offsetHeight : 0) + 16;
+    const offset = 56 + (sticky ? bar.offsetHeight : 0) + 32;
     const top = panel.getBoundingClientRect().top + window.scrollY - offset;
     // Solo sube si el usuario está más abajo del inicio de la lista.
     if (window.scrollY > top) window.scrollTo({ top, behavior: "auto" });
