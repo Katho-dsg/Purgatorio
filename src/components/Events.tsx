@@ -42,16 +42,10 @@ export function Events() {
         </div>
 
         <p className="label mt-8 text-center text-[1.15rem] tracking-[0.06em] text-ash-light">
-          {instagramUrl ? (
-            <>
-              Próximas fechas en{" "}
-              <a href={instagramUrl} target="_blank" rel="noreferrer" className="text-bone underline decoration-blood underline-offset-4">
-                @{site.instagram}
-              </a>
-            </>
-          ) : (
-            <span className="text-blood">[Instagram por confirmar]</span>
-          )}
+          Próximas fechas en{" "}
+          <a href={instagramUrl} target="_blank" rel="noreferrer" className="text-bone underline decoration-blood underline-offset-4">
+            @{site.instagram}
+          </a>
         </p>
       </div>
     </section>

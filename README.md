@@ -10,9 +10,9 @@ npm run dev     # http://localhost:3000
 npm run build && npm start
 ```
 
-## Datos por completar
+## Datos del lugar
 
-Edita `src/data/site.ts`: horario, usuario de Instagram y WhatsApp (mientras estén en `null` la página muestra "por confirmar"). La dirección viene del afiche de Tarot: verifícala.
+Edita `src/data/site.ts`: horario, Instagram y dirección (la dirección viene del afiche de Tarot: verifícala).
 
 La carta está en `src/data/menu.ts` (tomada del PDF del menú).
 

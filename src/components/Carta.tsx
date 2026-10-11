@@ -26,7 +26,7 @@ export function Carta() {
           La <span className="text-blood">carta</span>
         </h2>
 
-        <div role="tablist" aria-label="Categorías de la carta" className="no-scrollbar -mx-4 mt-8 flex items-center gap-1 overflow-x-auto border-y border-ink/20 px-4 sm:mx-0 sm:justify-center sm:px-0">
+        <div role="tablist" aria-label="Categorías de la carta" className="no-scrollbar sticky top-14 z-30 -mx-4 mt-8 flex items-center gap-1 overflow-x-auto border-y border-ink/20 bg-paper px-4 sm:static sm:mx-0 sm:justify-center sm:bg-transparent sm:px-0">
           {menu.map((c, k) => {
             const on = k === idx;
             return (

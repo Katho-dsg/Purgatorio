@@ -13,7 +13,7 @@ export function Hero() {
         <div className="relative flex items-start justify-between pt-5 sm:pt-7">
           <Star size={22} className="mt-1" />
           <p className="label text-center text-[clamp(0.95rem,1.25vw,1.2rem)] leading-tight tracking-[0.04em]">
-            Lo que ella no dice
+            Lo que nadie dice
             <br />
             lo guardan las piedras del castillo
           </p>
@@ -52,30 +52,30 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Estatua impresa, por delante del panel rojo */}
+      {/* Muñeco enjaulado impreso en tramado, por delante del panel rojo */}
       <div className="relative z-10 mx-auto -mt-[clamp(1.5rem,5vw,4.5rem)] flex w-full flex-1 justify-center">
         <img
-          src={asset("/img/v2/statue.png")}
-          alt="Escultura de mármol de una mujer velada que abraza a un niño, impresa en tramado"
+          src={asset("/img/v2/doll.png")}
+          alt="Muñeco tatuado con un 666 en la panza, encerrado en una jaula de alambre"
           width={1200}
           height={1800}
           fetchPriority="high"
-          className="develop pointer-events-none absolute top-0 w-[min(86vw,540px)] md:w-[min(38vw,580px)]"
+          className="develop pointer-events-none absolute top-0 w-[min(92vw,560px)] md:w-[min(34vw,520px)]"
         />
         <Star size={44} className="absolute top-[-1.5rem] text-blood" />
       </div>
 
       {/* Panel rojo rasgado: sin z-index propio, para que el texto quede sobre la estatua */}
-      <div className="relative mt-[clamp(14rem,30vw,20rem)] md:mt-[clamp(10rem,14.5vw,15rem)]">
+      <div className="relative mt-[clamp(14rem,30vw,20rem)] md:mt-[calc(min(51vw,780px)-9vw)]">
         <div aria-hidden className="torn text-blood-dark" />
         <div aria-hidden className="printed absolute inset-x-0 bottom-0 top-[calc(100vw*174/1536-1px)] overflow-hidden bg-blood-dark">
           <img
-            src={asset("/img/v2/statue-red.png")}
+            src={asset("/img/v2/doll-red.png")}
             alt=""
             className="halftone-light pointer-events-none absolute bottom-0 left-[-6%] hidden w-[26vw] max-w-[380px] opacity-60 md:block"
           />
           <img
-            src={asset("/img/v2/statue-red.png")}
+            src={asset("/img/v2/doll-red.png")}
             alt=""
             className="halftone-light pointer-events-none absolute bottom-0 right-[-6%] hidden w-[26vw] max-w-[380px] -scale-x-100 opacity-60 md:block"
           />
