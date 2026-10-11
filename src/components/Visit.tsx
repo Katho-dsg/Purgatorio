@@ -1,23 +1,23 @@
-import { Clock, InstagramLogo, MapPin, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
-import { instagramUrl, mapsEmbed, mapsUrl, site, whatsappUrl } from "@/data/site";
-
-function Pending({ children }: { children: React.ReactNode }) {
-  return <span className="text-blood">[{children}]</span>;
-}
+import { Clock, InstagramLogo, MapPin } from "@phosphor-icons/react/dist/ssr";
+import { instagramUrl, mapsEmbed, mapsUrl, site } from "@/data/site";
 
 export function Visit() {
   const rows = [
     { icon: MapPin, label: "Dónde", value: <>{site.place}<br />{site.address}</> },
-    { icon: Clock, label: "Horario", value: site.hours ?? <Pending>Horario por confirmar</Pending> },
+    { icon: Clock, label: "Horario", value: (
+        <ul className="space-y-1">
+          {site.hours.map((h) => (
+            <li key={h.days}>
+              {h.days}: <span className="whitespace-nowrap">{h.time}</span>
+            </li>
+          ))}
+        </ul>
+      ),
+    },
     {
       icon: InstagramLogo,
       label: "Instagram",
-      value: instagramUrl ? <a href={instagramUrl} target="_blank" rel="noreferrer" className="underline decoration-blood underline-offset-4">@{site.instagram}</a> : <Pending>Usuario por confirmar</Pending>,
-    },
-    {
-      icon: WhatsappLogo,
-      label: "WhatsApp",
-      value: whatsappUrl ? <a href={whatsappUrl} target="_blank" rel="noreferrer" className="underline decoration-blood underline-offset-4">Escríbenos</a> : <Pending>Número por confirmar</Pending>,
+      value: <a href={instagramUrl} target="_blank" rel="noreferrer" className="underline decoration-blood underline-offset-4">@{site.instagram}</a>,
     },
   ];
 
